@@ -1,15 +1,28 @@
 package com.addressBook;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 
 public class AddressMethods {
-	ArrayList<Address> addressBook = new ArrayList<Address>();
+	// ArrayList<Address> addressBook = new ArrayList<Address>();
+	Set<Address> addressBook = new LinkedHashSet<Address>();
 
 	void Add() {
+		
+		boolean flag=true;
 		Address address = new Address();
-		addressBook.add(address);
+		for (Address iterator : addressBook) {
+			if (iterator.getFirst_Name().equalsIgnoreCase(address.getFirst_Name()))
+				flag=false;
+		}
+		if(flag)
+			addressBook.add(address);
+		
 	}
 
 	void Show() {
@@ -27,7 +40,7 @@ public class AddressMethods {
 	}
 
 	void Edit() {
-		Scanner scanner= new Scanner(System.in);
+		Scanner scanner = new Scanner(System.in);
 		System.out.println("Enter the name whose deatils need to change  ");
 		String name = scanner.nextLine();
 		System.out.println("Enter the detail you have to edit");
@@ -43,51 +56,41 @@ public class AddressMethods {
 			case 1:
 				System.out.println("Enter the new Address Name");
 				String Addresss = scanner.next();
-				for (int i = 0; i < addressBook.size(); i++) {
-					if (addressBook.get(i).getFirst_Name().equalsIgnoreCase(name)) {
-						Address address = addressBook.get(i);
-						address.setAddress(Addresss);
-					}
+				for (Address iterator : addressBook) {
+					if (iterator.getFirst_Name().equalsIgnoreCase(name))
+						iterator.setAddress(Addresss);
 				}
 				break;
 			case 2:
 				System.out.println("Enter the new City");
 				String City = scanner.next();
-				for (int i = 0; i < addressBook.size(); i++) {
-					if (addressBook.get(i).getFirst_Name().equalsIgnoreCase(name)) {
-						Address address = addressBook.get(i);
-						address.setCity(City);
-					}
+				for (Address iterator : addressBook) {
+					if (iterator.getFirst_Name().equalsIgnoreCase(name))
+						iterator.setCity(City);
 				}
 				break;
 			case 3:
 				System.out.println("Enter the new State");
 				String State = scanner.next();
-				for (int i = 0; i < addressBook.size(); i++) {
-					if (addressBook.get(i).getFirst_Name().equalsIgnoreCase(name)) {
-						Address address = addressBook.get(i);
-						address.setState(State);
-					}
+				for (Address iterator : addressBook) {
+					if (iterator.getFirst_Name().equalsIgnoreCase(name))
+						iterator.setState(State);
 				}
 				break;
 			case 4:
 				System.out.println("Enter the new Zip");
 				String Zip = scanner.next();
-				for (int i = 0; i < addressBook.size(); i++) {
-					if (addressBook.get(i).getFirst_Name().equalsIgnoreCase(name)) {
-						Address address = addressBook.get(i);
-						address.setZip(Zip);
-					}
+				for (Address iterator : addressBook) {
+					if (iterator.getFirst_Name().equalsIgnoreCase(name))
+						iterator.setZip(Zip);
 				}
 				break;
 			case 5:
 				System.out.println("Enter the new Phone Number");
 				String Phone_Number = scanner.next();
-				for (int i = 0; i < addressBook.size(); i++) {
-					if (addressBook.get(i).getFirst_Name().equalsIgnoreCase(name)) {
-						Address address = addressBook.get(i);
-						address.setPhone_Number(Phone_Number);
-					}
+				for (Address iterator : addressBook) {
+					if (iterator.getFirst_Name().equalsIgnoreCase(name))
+						iterator.setPhone_Number(Phone_Number);
 				}
 				break;
 			case 0:
@@ -97,14 +100,15 @@ public class AddressMethods {
 			}
 		}
 	}
+
 	void Delete() {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Enter the Name whose data to delete");
 		String name = scanner.nextLine();
-		for (int i = 0; i < addressBook.size(); i++) {
-			if (addressBook.get(i).getFirst_Name().equalsIgnoreCase(name)) {
-				addressBook.remove(i);
-			}
+		for (Address iterator : addressBook) {
+			if (iterator.getFirst_Name().equalsIgnoreCase(name))
+				addressBook.remove(iterator);
+
 		}
 	}
 
