@@ -1,32 +1,46 @@
 package com.addressBook;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class AddressMethods {
-	// ArrayList<Address> addressBook = new ArrayList<Address>();
+
 	Set<Address> addressBook = new LinkedHashSet<Address>();
 
 	void Add() {
-		
-		boolean flag=true;
+
+		boolean flag = true;
 		Address address = new Address();
 		for (Address iterator : addressBook) {
 			if (iterator.getFirst_Name().equalsIgnoreCase(address.getFirst_Name()))
-				flag=false;
+				flag = false;
 		}
-		if(flag)
+		if (flag)
 			addressBook.add(address);
-		
+
 	}
 
 	void Show() {
 		Iterator itr = addressBook.iterator();
+		while (itr.hasNext()) {
+			Address address = (Address) itr.next();
+			System.out.println("Name- " + address.getFirst_Name() + " " + address.getLast_Name());
+			System.out.println("Address- " + address.getAddress());
+			System.out.println("City- " + address.getCity());
+			System.out.println("State- " + address.getState());
+			System.out.println("Zip- " + address.getZip());
+			System.out.println("Phone Number- " + address.getPhone_Number());
+			System.out.println("Email - " + address.getEmail());
+		}
+	}
+	void Show(List<Address> addressBook) {
+		Iterator<Address> itr = addressBook.iterator();
 		while (itr.hasNext()) {
 			Address address = (Address) itr.next();
 			System.out.println("Name- " + address.getFirst_Name() + " " + address.getLast_Name());
@@ -110,6 +124,26 @@ public class AddressMethods {
 				addressBook.remove(iterator);
 
 		}
+	}
+
+	public void sortByName() {
+		
+		List<String> unsortedArrayName = new ArrayList<>();
+		for (Address iterator : addressBook) {
+			unsortedArrayName.add(iterator.getFirst_Name());	
+		}
+		Stream<String> sorted = unsortedArrayName.stream().sorted();
+		List<String> sortedNames = sorted.collect(Collectors.toList());
+		
+		List<Address> sortedAddressBook = new ArrayList<Address>();
+		for(String sortedName : sortedNames) {
+			for (Address iterator : addressBook) {
+				if(sortedName.equals(iterator.getFirst_Name()))
+					sortedAddressBook.add(iterator);
+			}
+		}
+		
+		Show(sortedAddressBook);
 	}
 
 }

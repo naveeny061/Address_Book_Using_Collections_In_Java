@@ -12,6 +12,7 @@ public class AddressBook {
 			System.out.println("Press 2 : Edit Contact");
 			System.out.println("Press 3 : Print Contact");
 			System.out.println("Press 4 : Delete Contact");
+			System.out.println("Press 5 : Sort Contact By Name");
 			System.out.println("Press 0 : Exit");
 			Scanner scanner = new Scanner(System.in);
 			int choice = scanner.nextInt();
@@ -27,6 +28,9 @@ public class AddressBook {
 				break;
 			case 4:
 				addressMethod.Delete();
+				break;
+			case 5:
+				addressMethod.sortByName();
 				break;
 			case 0:
 				return;
