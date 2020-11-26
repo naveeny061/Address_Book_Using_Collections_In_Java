@@ -13,6 +13,9 @@ public class AddressBook {
 			System.out.println("Press 3 : Print Contact");
 			System.out.println("Press 4 : Delete Contact");
 			System.out.println("Press 5 : Sort Contact By Name");
+			System.out.println("Press 6 : Sort Contact By City");
+			System.out.println("Press 7 : Sort Contact By State");
+			System.out.println("Press 8 : Sort Contact By Zip");
 			System.out.println("Press 0 : Exit");
 			Scanner scanner = new Scanner(System.in);
 			int choice = scanner.nextInt();
@@ -31,6 +34,15 @@ public class AddressBook {
 				break;
 			case 5:
 				addressMethod.sortByName();
+				break;
+			case 6:
+				addressMethod.sortByCity();
+				break;
+			case 7:
+				addressMethod.sortByState();
+				break;
+			case 8:
+				addressMethod.sortByZip();
 				break;
 			case 0:
 				return;
